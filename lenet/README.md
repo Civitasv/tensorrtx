@@ -4,7 +4,7 @@ lenet5 is the simplest net in this tensorrtx project. You can learn the basic pr
 
 ## TensorRT C++ API
 
-```
+```sh
 // 1. generate lenet5.wts from https://github.com/wang-xinyu/pytorchx/tree/master/lenet
 
 // 2. put lenet5.wts into tensorrtx/lenet
@@ -30,7 +30,7 @@ sudo ./lenet -d   // deserialize plan file and run inference
 
 ## TensorRT Python API
 
-```
+```sh
 # 1. generate lenet5.wts from https://github.com/wang-xinyu/pytorchx/tree/master/lenet
 
 # 2. put lenet5.wts into tensorrtx/lenet

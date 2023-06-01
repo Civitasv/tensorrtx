@@ -8,26 +8,26 @@ Clone the wang-xinyu/pytorchx in your machine. Enter lenet folder.
 
 And of course you should install pytorch first.
 
-```
+```sh
 git clone https://github.com/wang-xinyu/pytorchx
 cd pytorchx/lenet
 ```
 
 Run lenet5.py to generate lenet5.pth which is the pytorch serialized model. The lenet5 arch is defined in lenet5.py.
 
-```
+```sh
 python lenet5.py
 ```
 
 Run inference.py to generate lenet5.wts, which is weights file for tensorrt.
 
-```
+```sh
 python inference.py
 ```
 
-You should see the output from terminal like this, the output of lenet5 is [[0.0950, 0.0998, 0.1101, 0.0975, 0.0966, 0.1097, 0.0948, 0.1056, 0.0992, 0.0917]], shape is [1, 10].
+You should see the output from terminal like this, the output of lenet5 is `[[0.0950, 0.0998, 0.1101, 0.0975, 0.0966, 0.1097, 0.0948, 0.1056, 0.0992, 0.0917]]`, shape is [1, 10].
 
-```
+```sh
 cuda device count:  2
 input:  torch.Size([1, 1, 32, 32])
 conv1 torch.Size([1, 6, 28, 28])
@@ -46,7 +46,7 @@ Clone the wang-xinyu/tensorrtx in your machine. Enter lenet folder, copy lenet5.
 
 And of course you should install cuda/cudnn/tensorrt first. You might need to adapt the tensorrt path in CMakeLists.txt if you install tensorrt from tar package.
 
-```
+```sh
 git clone https://github.com/wang-xinyu/tensorrtx
 cd tensorrtx/lenet
 cp [PATH-OF-pytorchx]/pytorchx/lenet/lenet5.wts .
@@ -56,23 +56,23 @@ cmake ..
 make
 ```
 
-If the `make` succeed, the executable `lenet` will generated.
+If the `make` succeed, the executable `lenet` will be generated.
 
 Run lenet to build tensorrt engine and serialize it to file `lenet5.engine`.
 
-```
+```sh
 ./lenet -s
 ```
 
 Deserialize the engine and run inference.
 
-```
+```sh
 ./lenet -d
 ```
 
 You should see the output like this,
 
-```
+```sh
 Output:
 
 0.0949623, 0.0998472, 0.110072, 0.0975036, 0.0965564, 0.109736, 0.0947979, 0.105618, 0.099228, 0.0916792,
@@ -80,11 +80,11 @@ Output:
 
 ## 3. Compare the two output
 
-As the input to pytorch and tensorrt are same, i.e. a [1,1,32,32] all ones tensor.
+As the input to pytorch and tensorrt are same, i.e. a `[1,1,32,32]` all ones tensor.
 
 So the output should be same, otherwise there must be something wrong.
 
-```
+```sh
 The pytorch output is 
 0.0950, 0.0998, 0.1101, 0.0975, 0.0966, 0.1097, 0.0948, 0.1056, 0.0992, 0.0917
 
@@ -108,7 +108,7 @@ And then each line is
 
 The value is in HEX format.
 
-```
+```sh
 10
 conv1.weight 150 be40ee1b bd20bab8 bdc4bc53 .......
 conv1.bias 6 bd327058 .......
@@ -121,4 +121,3 @@ fc2.bias 84 bc71eaa0 3d9b276c .......
 fc3.weight 840 3c252870 3d855351 .......
 fc3.bias 10 bdbe4bb8 3b119ee0 ......
 ```
-

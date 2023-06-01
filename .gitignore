@@ -3,3 +3,6 @@
 */*.wts
 */*.ppm
 *idea*
+**/*.vs
+*/bin
+*/*.pth
